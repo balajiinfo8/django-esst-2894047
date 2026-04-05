@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+        <!-- <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="text-align: right;" class="btn btn-primary float-end">login</button>
+        </form>  -->
+        <!-- <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="text-align:left;" class="btn btn-danger float-start">logout</button>
+        </form> -->
+        <h1>welcome to django page</h1>
+        <h1>Today date and time was this {{today}}</h1>
+        <a  href="{% url 'notes.list' %}" class="btn btn-primary">Click here for the List</a>
+        <h1 class='my-5'>This was the advantage page was using in the django project</h1>
+        {% include 'home/advantages.html' %}
+        
+{% endblock %}

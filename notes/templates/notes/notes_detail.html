@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+<html>
+    {% block content %}
+    <div class="border round">
+        <h1 class="my-5">{{notes.title}}{% if notes.is_public %}<span class="badge bg-secondary">Public</span>{% endif %}</h1>
+        <h3>{{notes.text}}</h3>
+    </div>
+
+    <!-- show number of likes -->
+     <p>Number of Listes : {{notes.likes}}</p>
+     <form action="{% url 'notes.add_like' pk=notes.id %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-light mt-5">upvote</button>
+     </form> 
+    <!-- Make it switch from public to private -->
+    <form action="{% url 'notes.change_visibility' pk=notes.id %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-dark mt-5">
+            <!-- check public or private model  -->
+            {% if notes.is_public %}
+                Make it Private
+            {% else %}
+                Make it Public
+            {% endif %}
+        </button>
+    </form> 
+    <a href="{% url 'notes.list' %}" class="btn btn-primary">Back</a>
+    <a href="{% url 'notes.update' pk=notes.id %}" class="btn btn-secondary my-5">Edit</a>
+    <a href="{% url 'notes.delete' pk=notes.id %}" class="btn btn-danger">Delete</a>
+    {% endblock %}
+</html>
